@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h1>
+    Places
+    <a href="/places/new" class="btn btn-lg btn-success">Add new place</a>
+    <a href="/places_map" class="btn btn-lg btn-primary">Map places</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Address</th>
+        <th>Lat</th>
+        <th>Lng</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Color</th>
+        <th>Actions</th>
+      </tr>
+      
+      <% @places.each do |place| %>
+      <tr>
+        <td><%= place.address %></td>
+        <td><%= place.lat %></td>
+        <td><%= place.lng %></td>
+        <td><%= place.name %></td>
+        <td><%= place.description %></td>
+        <td><%= place.color %></td>
+        <td>
+          <a href="/places/<%= place.id %>" class="btn btn-primary">Show</a>
+          <a href="/places/<%= place.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_place/<%= place.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

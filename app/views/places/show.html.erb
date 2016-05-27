@@ -1,0 +1,40 @@
+<style>
+#map {
+  width: 500px;
+  height: 400px;
+}
+</style>
+
+  <div id="map"></div>
+  <script>
+  function initMap() {
+    var mapDiv = document.getElementById('map');
+    var map = new google.maps.Map(mapDiv, {
+      center: {lat: <%= @place.lat %>, lng: <%= @place.lng %>},
+      zoom: 13 
+    });
+    
+    
+    var infowindow = new google.maps.InfoWindow({
+      content: "<b> <%= @place.name %> </b>"  + 
+                "<li><%= @place.address %> </li>" + 
+                "<li><%= @place.description %></li> "
+    });
+    
+    var marker = new google.maps.Marker({
+      position: {lat: <%= @place.lat %>, lng: <%= @place.lng %>},
+      map: map,
+      title: "<%= @place.name %>",
+      icon: 'http://maps.google.com/mapfiles/ms/icons/<%= @place.color %>-dot.png' 
+    });
+    
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+
+    });    
+    
+  };
+  
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+
